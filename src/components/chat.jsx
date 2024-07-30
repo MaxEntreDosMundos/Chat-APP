@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {auth, db} from "../firebase";
 import { query,collection,orderBy,onSnapshot, QuerySnapshot } from "firebase/firestore";
+import Message from "./Message"; // Ensure this import is correctly pointing to your Message component file
 
 
 const Chat = () =>{
@@ -25,6 +26,16 @@ const Chat = () =>{
     return(
 
         <section className="chat-content">
+            
+            {
+                messages && messages.map(item => (
+                    <Message
+                        key={item.id}
+                        messages={item.content}
+                    />
+                ))
+            }
+
             <h4>Este es un mensaje</h4>
         </section>
     );
